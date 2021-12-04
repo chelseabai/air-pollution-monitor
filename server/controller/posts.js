@@ -42,7 +42,7 @@ const locations = [Marylebone, Camden, NKensington, Hounslow, Sirjohncass, Hackn
 const fetchPollutionData = async() => {
     let time_ob = new Date();
     let year = time_ob.getFullYear();
-    let month = time_ob.getMonth();
+    let month = time_ob.getMonth() + 1;
     let date = time_ob.getDate();
     let hour =  time_ob.getHours();
     let time = year + "-" + month + "-" + date + "-" + hour;
