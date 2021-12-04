@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Deploy react frontend and node.js backend to heroku.",
   "engines": {
-    "node": "12.x"
+    "node": "12.18.3",
+    "npm": "6.14.6"
   },
   "scripts": {
     "start": "cd server && nodemon index.js",
@@ -12,7 +13,8 @@
   "keywords": [
     "node",
     "heroku",
-    "react"],
+    "react"
+  ],
   "license": "MIT",
   "dependencies": {
     "aqi-us": "^0.3.0",
