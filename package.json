@@ -2,12 +2,13 @@
   "name": "heroku-deployment",
   "version": "1.0.0",
   "description": "Deploy react frontend and node.js backend to heroku.",
+  "type": "module",
   "engines": {
     "node": "12.18.3",
     "npm": "6.14.6"
   },
   "scripts": {
-    "start": "cd server && nodemon index.js",
+    "start": "nodemon index.js",
     "heroku-postbuild": "cd frontend && npm install && npm run build"
   },
   "keywords": [
