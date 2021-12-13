@@ -47,7 +47,7 @@ client.on('connect', () => {
         client.on('message', (topic, payload) => {
             const data = payload.toString();
             console.log('Received Message:', topic, data);
-            // postMQTTdata(topic, data);
+            postMQTTdata(topic, data);
         });
     })
 });
