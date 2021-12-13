@@ -28,25 +28,34 @@ app.get('/*', (req, res) => {
 const CONNECTION_URL = `mongodb+srv://chelseabai:happytina123@pollution-data.vssyr.mongodb.net/databaseA?retryWrites=true&w=majority`;
 const PORT = process.env.PORT || 5000;
 
-const mqtt_url = process.env.CLOUDMQTT_URL || "driver.cloudmqtt.com:18982";
-const client = mqtt.connect(mqtt_url);
+const options = {
+    port: 18982,
+    host: "mqtt://driver.cloudmqtt.com",
+    username: 'knnxvpbv',
+    password: 'ts9Q8a2BmYRi',
+};
+
+// const mqtt_url = process.env.CLOUDMQTT_URL || "driver.cloudmqtt.com:18982";
+const client = mqtt.connect("mqtt://driver.cloudmqtt.com:", options);
 
 const topic = 'esp/pm25';
+
 
 // Post pollution data from online API to the database
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => app.listen(PORT, function (){
+        client.on('connect', () => {
+            console.log('Connected');
+            client.subscribe([topic], () => {
+                console.log(`Subscribe to topic '${topic}'`);
+                client.on('message', (topic, payload) => {
+                    const data = payload.toString();
+                    console.log('Received Message:', topic, data);
+                    postMQTTdata(topic, data);
+                });
+            })
+        });
         console.log(`Server running on port: ${PORT}`);
-        // client.on('connect', () => {
-        //     console.log('Connected');
-        //     client.subscribe([topic], () => {
-        //         console.log(`Subscribe to topic '${topic}'`);
-        //         client.on('message', (topic, payload) => {
-        //             postMQTTdata(topic, payload.toString());
-        //             console.log('Received Message:', topic, payload.toString());
-        //         });
-        //     })
-        // });
 
 // Subscribe to MQTT broker service to obtain data from sensor
 
