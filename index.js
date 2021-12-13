@@ -31,13 +31,12 @@ const client = mqtt.connect({ host: 'localhost', port: 1883 });
 const topic = 'esp/pm25';
 
 // Post pollution data from online API to the database
-// mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true})
-//     .then(() => app.listen(PORT, function (){
-//         console.log(`Server running on port: ${PORT}`);
-//         console.log('hiii');
-//         // postPollutionData();
-//     }))
-//     .catch((error) => console.log(error.message));
+mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true})
+    .then(() => app.listen(PORT, function (){
+        console.log(`Server running on port: ${PORT}`);
+        // postPollutionData();
+    }))
+    .catch((error) => console.log(error.message));
 
 client.on('connect', () => {
     console.log('Connected');
@@ -45,6 +44,7 @@ client.on('connect', () => {
         console.log(`Subscribe to topic '${topic}'`)
     })
 });
+console.log('hiii');
 
 // Subscribe to MQTT broker service to obtain data from sensor
 client.on('message', (topic, payload) => {
