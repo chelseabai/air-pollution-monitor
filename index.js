@@ -41,6 +41,7 @@ client.on('connect', () => {
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => app.listen(PORT, function (){
         console.log(`Server running on port: ${PORT}`);
+        console.log('hiii');
 
         // Subscribe to MQTT broker service to obtain data from sensor
         client.on('message', (topic, payload) => {
