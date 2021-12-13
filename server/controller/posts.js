@@ -82,8 +82,6 @@ export const postMQTTdata = async(topic, concentration) => {
     } catch (error) {
         console.log('There is an error with the sensor!');
     }
-
-
 };
 
 export const getMaryleboneData = async (req,res) =>{
