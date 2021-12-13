@@ -72,8 +72,9 @@ export const postMQTTdata = async(topic, concentration) => {
     let month = time_ob.getMonth() + 1;
     let date = time_ob.getDate();
     let hour =  time_ob.getHours();
+    let minute =  time_ob.getMinutes();
     let seconds = time_ob. getSeconds();
-    let time = year + "-" + month + "-" + date + "-" + hour + "-" + seconds;
+    let time = year + "-" + month + "-" + date + "-" + hour + "-" + minute + "-" + seconds;
     let pm25_aqi = aqi.pm25(concentration);
     let location = "mylocation";
     try {
