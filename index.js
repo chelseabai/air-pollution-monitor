@@ -37,24 +37,25 @@ const options = {
 
 // const mqtt_url = process.env.CLOUDMQTT_URL || "driver.cloudmqtt.com:18982";
 const client = mqtt.connect("mqtt://driver.cloudmqtt.com:", options);
-
+// const client = mqtt.connect("mqtt://knnxvpbv:ts9Q8a2BmYRi@driver.cloudmqtt.com:18982");
 const topic = 'esp/pm25';
 
+client.on('connect', () => {
+    console.log('Connected');
+    client.subscribe([topic], () => {
+        console.log(`Subscribe to topic '${topic}'`);
+        client.on('message', (topic, payload) => {
+            const data = payload.toString();
+            console.log('Received Message:', topic, data);
+            // postMQTTdata(topic, data);
+        });
+    })
+});
 
 // Post pollution data from online API to the database
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => app.listen(PORT, function (){
-        client.on('connect', () => {
-            console.log('Connected');
-            client.subscribe([topic], () => {
-                console.log(`Subscribe to topic '${topic}'`);
-                client.on('message', (topic, payload) => {
-                    const data = payload.toString();
-                    console.log('Received Message:', topic, data);
-                    postMQTTdata(topic, data);
-                });
-            })
-        });
+
         console.log(`Server running on port: ${PORT}`);
 
 // Subscribe to MQTT broker service to obtain data from sensor
