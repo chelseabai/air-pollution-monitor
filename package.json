@@ -27,6 +27,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^6.0.12",
+    "mqtt": "^4.2.8",
     "node-fetch": "^3.0.0",
     "node-schedule": "^2.0.0",
     "nodemon": "^2.0.14"

@@ -1,6 +1,6 @@
 import express from 'express';
 import { getMaryleboneData, getCamdenData, getNKensingtonData, getHounslowData,
-    getSirjohncassData, getHackneyData, getFarringdonData, getWestminsterData } from "../controller/posts.js";
+    getSirjohncassData, getHackneyData, getFarringdonData, getWestminsterData, getMyData } from "../controller/posts.js";
 
 const router = express.Router();
 
@@ -12,6 +12,7 @@ router.get('/api/Sirjohncass', getSirjohncassData);
 router.get('/api/Hackney', getHackneyData);
 router.get('/api/Farringdon', getFarringdonData);
 router.get('/api/Westminster', getWestminsterData);
+router.get('/api/mylocation', getMyData);
 
 // router.get('/api', displayPollutionData);
 

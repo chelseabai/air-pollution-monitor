@@ -1,10 +1,12 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
+import mqtt from 'mqtt';
 import cors from 'cors';
 import routes from './server/routes/routes.js'
-import {postPollutionData} from "./server/controller/posts.js";
+import {postPollutionData, postMQTTdata} from "./server/controller/posts.js";
 import path from 'path';
+import aqi from "aqi-us";
 
 const app = express();
 
@@ -25,6 +27,22 @@ app.get('/*', (req, res) => {
 const CONNECTION_URL = `mongodb+srv://chelseabai:happytina123@pollution-data.vssyr.mongodb.net/databaseA?retryWrites=true&w=majority`;
 const PORT = process.env.PORT || 5000;
 
+const client = mqtt.connect({ host: 'localhost', port: 1883 });
+const topic = 'esp/pm25';
+
+// Subscribe to MQTT broker service to obtain data from sensor
+client.on('connect', () => {
+    console.log('Connected');
+    client.subscribe([topic], () => {
+        console.log(`Subscribe to topic '${topic}'`)
+    })
+});
+client.on('message', (topic, payload) => {
+    postMQTTdata(topic, payload.toString());
+    console.log('Received Message:', topic, payload.toString());
+});
+
+// Post pollution data from online API to the database
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => app.listen(PORT, function (){
         console.log(`Server running on port: ${PORT}`);

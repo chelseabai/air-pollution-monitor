@@ -54,7 +54,7 @@ const fetchPollutionData = async() => {
             const location = json.data.city.name;
             await saveData(location, pm25_aqi, time);
         } catch (error) {
-            console.log('There is an error!');
+            console.log('There is an error with the API!');
         }
     }
 };
@@ -65,6 +65,25 @@ export const postPollutionData = () => {
         console.log("Job is running!");
         fetchPollutionData();
     });
+};
+
+export const postMQTTdata = async(topic, concentration) => {
+    let time_ob = new Date();
+    let year = time_ob.getFullYear();
+    let month = time_ob.getMonth() + 1;
+    let date = time_ob.getDate();
+    let hour =  time_ob.getHours();
+    let seconds = time_ob. getSeconds();
+    let time = year + "-" + month + "-" + date + "-" + hour + "-" + seconds;
+    let pm25_aqi = aqi.pm25(concentration);
+    let location = "mylocation";
+    try {
+        await saveData(location, pm25_aqi, time);
+    } catch (error) {
+        console.log('There is an error with the sensor!');
+    }
+
+
 };
 
 export const getMaryleboneData = async (req,res) =>{
@@ -132,6 +151,15 @@ export const getFarringdonData = async (req,res) =>{
 export const getWestminsterData = async (req,res) =>{
     try {
         const data = await PollutionModel.find({location: "London Westminster, United Kingdom"});
+        res.send(data);
+    } catch (error){
+        console.log('Error');
+    }
+};
+
+export const getMyData = async (req,res) =>{
+    try {
+        const data = await PollutionModel.find({location: "mylocation"});
         res.send(data);
     } catch (error){
         console.log('Error');
