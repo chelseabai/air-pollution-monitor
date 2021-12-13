@@ -60,7 +60,7 @@ const fetchPollutionData = async() => {
 };
 
 export const postPollutionData = () => {
-    schedule.scheduleJob('55 * * * *', function(){
+    schedule.scheduleJob('30 * * * *', function(){
         console.log("Job is running!");
         fetchPollutionData();
     });
