@@ -55,7 +55,7 @@ export default function PollutionLineChart() {
     const data = [];
 
     useEffect(() => {
-        axios.get("https://pollutioncompass.herokuapp.com/api/Camden")
+        axios.get("/api/Camden")
         .then(res => res.json())
         .then((result) => {
             console.log(result);
