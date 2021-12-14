@@ -49,29 +49,26 @@ const data = [
 ];
 
 export default function PollutionLineChart() {
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [items, setItems] = useState([]);
-    const data = [];
+    // const [error, setError] = useState(null);
+    // const [isLoaded, setIsLoaded] = useState(false);
+    // const [items, setItems] = useState([]);
+    // const data = [];
 
     useEffect(() => {
         axios.get("/api/Camden")
-        .then(res => res.json())
-        .then((result) => {
-            console.log(result);
-            console.log('hii')
+        .then((response) => {
+            const data = response;
+            console.log(data);
+        })
             // for (var instance in result){
             //     console.log(instance);
             //     var pollutionData = instance["aqi"];
             //     data.push(pollutionData)
             // }
-        },
-            (error) => {
-                setIsLoaded(true);
-                setError(error);
-            })
-        .catch(error)
-    },[]);
+        .catch(() => {
+            console.log("Error!")
+        })
+    });
 
     // static demoUrl = 'https://codesandbox.io/s/simple-line-chart-kec3v';
 

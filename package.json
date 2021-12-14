@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "server": "nodemon index.js",
+    "server": "nodemon index.js --ignore client",
     "build": "cd frontend && npm install && npm run build",
     "heroku-postbuild": "npm run install-frontend && npm run build",
     "frontend": "cd frontend && npm start"
