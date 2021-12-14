@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import { getMaryleboneData, getCamdenData, getNKensingtonData, getHounslowData,
     getSirjohncassData, getHackneyData, getFarringdonData, getWestminsterData, getMyData } from "../controller/posts.js";
 

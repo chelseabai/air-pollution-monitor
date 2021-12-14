@@ -10,12 +10,13 @@ import path from 'path';
 import aqi from "aqi-us";
 
 const app = express();
+app.use(cors({credentials: true, origin: true}));
 
 app.use('/', routes);
 
 app.use(bodyParser.json({limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
-app.use(cors({credentials: true, origin: true}));
+
 
 const allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
