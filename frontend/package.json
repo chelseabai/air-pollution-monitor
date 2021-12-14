@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": ".",
-  "proxy": "http://localhost:5000",
+   "proxy": "http://localhost:5000",
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
@@ -23,6 +23,7 @@
     "react-file-base64": "^1.0.3",
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
+    "recharts": "^2.1.6",
     "redux": "^4.1.2",
     "web-vitals": "^1.1.2"
   },

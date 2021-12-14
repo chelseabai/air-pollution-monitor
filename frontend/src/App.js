@@ -6,6 +6,7 @@ import Navbar from "./components/navbar.component";
 import Homepage from "./components/homepage.component";
 import Map from "./components/map.component";
 import Mapdata from "./components/mapdata.component";
+import PollutionLineChart from "./components/linechart.component";
 
 const App = () => {
     return (
@@ -14,6 +15,7 @@ const App = () => {
             <div className="d-flex flex-row">
             <Mapdata />
             <Map />
+            <PollutionLineChart />
             </div>
             <Routes>
                 <Route path="/" element={ <Homepage /> } />

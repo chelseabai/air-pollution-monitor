@@ -9,9 +9,9 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlbHNlYWJhaSIsImEiOiJja3c4bmd1cXEyNGN2MnZwN
 export default function Map() {
     const mapContainer = useRef(null);
     const map = useRef(null);
-    const [lng, setLng] = useState(-0.176894);
-    const [lat, setLat] = useState(51.498356);
-    const [zoom, setZoom] = useState(11);
+    const [lng] = useState(-0.176894);
+    const [lat] = useState(51.498356);
+    const [zoom] = useState(11);
 
 
     useEffect(() => {
@@ -67,7 +67,8 @@ export default function Map() {
                 -0.257252, 51.492507])
             .addTo(map.current);
         marker1.getElement().addEventListener('click', ()=>{
-            alert('clicked')
+            alert('clicked');
+            console.log('hii')
         })
     });
 
