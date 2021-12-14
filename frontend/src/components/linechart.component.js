@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 const data = [
     {
@@ -54,7 +55,7 @@ export default function PollutionLineChart() {
     const data = [];
 
     useEffect(() => {
-        fetch("http://pollutioncompass.herokuapp.com/api/Camden")
+        axios.get("http://pollutioncompass.herokuapp.com/api/Camden")
         .then(res => res.json())
         .then((result) => {
             console.log(result);
