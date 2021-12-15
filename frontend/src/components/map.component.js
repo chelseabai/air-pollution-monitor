@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css"
 import mapboxgl from '!mapbox-gl';
 import axios from "axios";
+import PollutionLineChart from "./linechart.component";
 
 /* eslint import/no-webpack-loader-syntax: off */
 
@@ -15,13 +16,13 @@ export default function Map() {
     const [zoom] = useState(11);
     const [location, setLocation] = useState(["Marylebone Road"]);
     const [timeString] = useState([Date().toLocaleString()]);
-    const url = "https://pollutioncompass.herokuapp.com/api/Marylebone";
     const [pollution, setPollution] = useState([]);
+    const [myurl, setUrl] = useState(["https://pollutioncompass.herokuapp.com/api/Marylebone"]);
 
 
 
     useEffect(() => {
-        axios.get(url)
+        axios.get(myurl)
             .then((response) => {
                 const lastData = response.data[response.data.length-1].aqi; // obtain the last element of the JSON array
                 const pollutionData = lastData;
@@ -84,8 +85,9 @@ export default function Map() {
         marker1.getElement().addEventListener('click', ()=>{
             const location = "Marylebone Road";
             setLocation(location);
-            const url = "https://pollutioncompass.herokuapp.com/api/Marylebone";
-            axios.get(url)
+            const myurl = "https://pollutioncompass.herokuapp.com/api/Marylebone";
+            setUrl(myurl);
+            axios.get(myurl)
                 .then((response) => {
                     const lastData = response.data[response.data.length-1].aqi; // obtain the last element of the JSON array
                     const pollution = lastData;
@@ -98,8 +100,9 @@ export default function Map() {
         marker2.getElement().addEventListener('click', ()=>{
             const location = "Camden - Euston Road";
             setLocation(location);
-            const url = "https://pollutioncompass.herokuapp.com/api/Camden";
-            axios.get(url)
+            const myurl = "https://pollutioncompass.herokuapp.com/api/Camden";
+            setUrl(myurl);
+            axios.get(myurl)
                 .then((response) => {
                     const lastData = response.data[response.data.length-1].aqi; // obtain the last element of the JSON array
                     const pollution = lastData;
@@ -112,8 +115,9 @@ export default function Map() {
         marker3.getElement().addEventListener('click', ()=>{
             const location = "North Kensington";
             setLocation(location);
-            const url = "https://pollutioncompass.herokuapp.com/api/NKensington";
-            axios.get(url)
+            const myurl = "https://pollutioncompass.herokuapp.com/api/NKensington";
+            setUrl(myurl);
+            axios.get(myurl)
                 .then((response) => {
                     const lastData = response.data[response.data.length-1].aqi; // obtain the last element of the JSON array
                     const pollution = lastData;
@@ -126,8 +130,9 @@ export default function Map() {
         marker4.getElement().addEventListener('click', ()=>{
             const location = "Westminster";
             setLocation(location);
-            const url = "https://pollutioncompass.herokuapp.com/api/Westminster";
-            axios.get(url)
+            const myurl = "https://pollutioncompass.herokuapp.com/api/Westminster";
+            setUrl(myurl);
+            axios.get(myurl)
                 .then((response) => {
                     const lastData = response.data[response.data.length-1].aqi; // obtain the last element of the JSON array
                     const pollution = lastData;
@@ -140,8 +145,9 @@ export default function Map() {
         marker5.getElement().addEventListener('click', ()=>{
             const location = "Farringdon Street";
             setLocation(location);
-            const url = "https://pollutioncompass.herokuapp.com/api/Farringdon";
-            axios.get(url)
+            const myurl = "https://pollutioncompass.herokuapp.com/api/Farringdon";
+            setUrl(myurl);
+            axios.get(myurl)
                 .then((response) => {
                     const lastData = response.data[response.data.length-1].aqi; // obtain the last element of the JSON array
                     const pollution = lastData;
@@ -154,8 +160,9 @@ export default function Map() {
         marker6.getElement().addEventListener('click', ()=>{
             const location = "Hackney - Old Street";
             setLocation(location);
-            const url = "https://pollutioncompass.herokuapp.com/api/Hackney";
-            axios.get(url)
+            const myurl = "https://pollutioncompass.herokuapp.com/api/Hackney";
+            setUrl(myurl);
+            axios.get(myurl)
                 .then((response) => {
                     const lastData = response.data[response.data.length-1].aqi; // obtain the last element of the JSON array
                     const pollution = lastData;
@@ -168,8 +175,9 @@ export default function Map() {
         marker7.getElement().addEventListener('click', ()=>{
             const location = "Sir Johns Cass School";
             setLocation(location);
-            const url = "https://pollutioncompass.herokuapp.com/api/Sirjohncass";
-            axios.get(url)
+            const myurl = "https://pollutioncompass.herokuapp.com/api/Sirjohncass";
+            setUrl(myurl);
+            axios.get(myurl)
                 .then((response) => {
                     const lastData = response.data[response.data.length-1].aqi; // obtain the last element of the JSON array
                     const pollution = lastData;
@@ -182,8 +190,9 @@ export default function Map() {
         marker8.getElement().addEventListener('click', ()=>{
             const location = "Hounslow Chiswick";
             setLocation(location);
-            const url = "https://pollutioncompass.herokuapp.com/api/Hounslow";
-            axios.get(url)
+            const myurl = "https://pollutioncompass.herokuapp.com/api/Hounslow";
+            setUrl(myurl);
+            axios.get(myurl)
                 .then((response) => {
                     const lastData = response.data[response.data.length-1].aqi; // obtain the last element of the JSON array
                     const pollution = lastData;
@@ -197,16 +206,22 @@ export default function Map() {
 
 
     return (
-        <div className="d-flex flex-row">
-            <div ref={mapContainer} className="map-container" style={{ width:'70vw', height:'400px', minWidth: '500px'}}/>
-            <div className="container p-3" style={{ width:'30vw',minWidth: '450px'}}>
-                <div style={{fontSize: "40px"}}>{location}</div>
-                <hr></hr>
-                <div style={{fontSize: "20px"}}>Real-time PM2.5 Pollution Level:</div>
-                <div style={{fontSize: "100px"}}>{pollution}</div>
-                <div style={{fontSize: "15px", color: "#bcbec0"}}>Last updated: {timeString}</div>
-                <div style={{fontSize: "15px", color: "#bcbec0"}}>Data provided by: London Air Quality Network</div>
+        <div>
+            <div className="d-flex flex-row">
+                <div ref={mapContainer} className="map-container" style={{ width:'70vw', height:'400px', minWidth: '500px'}}/>
+                <div className="container p-3" style={{ width:'30vw',minWidth: '450px'}}>
+                    <div style={{fontSize: "40px"}}>{location}</div>
+                    <hr></hr>
+                    <div style={{fontSize: "20px"}}>Real-time PM2.5 Pollution Level:</div>
+                    <div style={{fontSize: "100px"}}>{pollution}</div>
+                    <div style={{fontSize: "15px", color: "#bcbec0"}}>Last updated: {timeString}</div>
+                    <div style={{fontSize: "15px", color: "#bcbec0"}}>Data provided by: London Air Quality Network</div>
+                </div>
+            </div>
+            <div className="d-flex flex-row" style={{ width:'100vw'}}>
+                <PollutionLineChart url={myurl}/>
             </div>
         </div>
+
     );
 }

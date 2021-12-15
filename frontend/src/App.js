@@ -15,9 +15,6 @@ const App = () => {
             {/*<Routes>*/}
             {/*    <Route path="/" element={ <Homepage /> } />*/}
             {/*</Routes>*/}
-            <div className="d-flex flex-row" style={{ width:'100vw'}}>
-                <PollutionLineChart />
-            </div>
         </Router>
 
     )

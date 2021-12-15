@@ -13,15 +13,12 @@ import { LineChart,
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-
-
-export default function PollutionLineChart() {
-    // const [error, setError] = useState(null);
-    // const [isLoaded, setIsLoaded] = useState(false);
+export default function PollutionLineChart({url}) {
     let [data, setData] = useState([]);
+    let [timeString] = useState([Date().toLocaleString()]);
 
     useEffect(() => {
-        axios.get("https://pollutioncompass.herokuapp.com/api/Camden")
+        axios.get(url)
         .then((response) => {
             const data = [];
             const pollutiondata = response.data;
@@ -38,14 +35,16 @@ export default function PollutionLineChart() {
         .catch(() => {
             console.log("Error!")
         })
-    });
+    },[url]);
 
     return (
 
         <div className="p-3" style={{width: '30vw', aspectRatio: '3.5/2', boxShadow: "3px 3px 10px 1px #ededfc", borderRadius: "15px"}}>
             <h4>
-                PM2.5 Pollution Line Chart
+                Historical PM2.5 Pollution Line Chart
             </h4>
+            <div style={{fontSize: "10px", color: "#bcbec0"}}>Data collected since 4th December</div>
+            <div style={{fontSize: "10px", color: "#bcbec0"}}>Last updated: {timeString}</div>
             <hr></hr>
             <ResponsiveContainer width="100%" height="100%">
             <AreaChart
