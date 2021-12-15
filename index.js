@@ -45,9 +45,7 @@ const options = {
     password: 'ts9Q8a2BmYRi',
 };
 
-// const mqtt_url = process.env.CLOUDMQTT_URL || "driver.cloudmqtt.com:18982";
 const client = mqtt.connect("mqtt://driver.cloudmqtt.com:", options);
-// const client = mqtt.connect("mqtt://knnxvpbv:ts9Q8a2BmYRi@driver.cloudmqtt.com:18982");
 const topic = 'esp/pm25';
 
 client.on('connect', () => {
