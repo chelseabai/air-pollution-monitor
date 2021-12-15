@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import mapboxgl from '!mapbox-gl';
 import axios from "axios";
 import PollutionLineChart from "./linechart.component";
+import PollutionBarChart from "./barchart.component";
 
 /* eslint import/no-webpack-loader-syntax: off */
 
@@ -218,8 +219,9 @@ export default function Map() {
                     <div style={{fontSize: "15px", color: "#bcbec0"}}>Data provided by: London Air Quality Network</div>
                 </div>
             </div>
-            <div className="d-flex flex-row" style={{ width:'100vw'}}>
+            <div className="d-flex flex-row overflow-scroll" style={{ width:'100vw', minWidth: '950px'}}>
                 <PollutionLineChart url={myurl}/>
+                <PollutionBarChart url={myurl}/>
             </div>
         </div>
 

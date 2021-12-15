@@ -39,14 +39,14 @@ export default function PollutionLineChart({url}) {
 
     return (
 
-        <div className="p-3" style={{width: '30vw', aspectRatio: '3.5/2', boxShadow: "3px 3px 10px 1px #ededfc", borderRadius: "15px"}}>
+        <div className="p-3" style={{minWidth:'600px', minHeight: '400px', width: '30vw', height: '20vw', boxShadow: "3px 3px 10px 1px #ededfc", borderRadius: "15px"}}>
             <h4>
                 Historical PM2.5 Pollution Line Chart
             </h4>
             <div style={{fontSize: "10px", color: "#bcbec0"}}>Data collected since 4th December</div>
             <div style={{fontSize: "10px", color: "#bcbec0"}}>Last updated: {timeString}</div>
             <hr></hr>
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height="70%">
             <AreaChart
                 width={600}
                 height={300}
