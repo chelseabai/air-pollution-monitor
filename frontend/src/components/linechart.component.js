@@ -25,10 +25,10 @@ export default function PollutionLineChart({url}) {
             for (var instance in pollutiondata){
                 let aqi_data = pollutiondata[instance].aqi;
                 let time = pollutiondata[instance].time.split("-");
-                let hour = time[-1];
+                let hour = time[time.length-1];
                 time.pop();
                 let date = time.join('-');
-                data.push({date :date, hour: hour, aqi: aqi_data})
+                data.push({date :date, hour: hour, aqi: aqi_data});
             }
             setData(data);
         })
@@ -36,6 +36,20 @@ export default function PollutionLineChart({url}) {
             console.log("Error!")
         })
     },[url]);
+
+    const CustomTooltip = ({ active, payload, label }) => {
+        if (active && payload && payload.length) {
+            return (
+                <div className="custom-tooltip p-1" style={{background: 'white', border:'solid 1px grey'}}>
+                    <div className="label">Date: {label}</div>
+                    <div>Time: {payload[0].payload.hour}:00 </div>
+                    <div className="intro">AQI: {payload[0].value}</div>
+                </div>
+            );
+        }
+
+        return null;
+    };
 
     return (
 
@@ -67,7 +81,8 @@ export default function PollutionLineChart({url}) {
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="date" />
                 <YAxis />
-                <Tooltip />
+                <Tooltip content ={<CustomTooltip />}/>
+                <Legend wrapperStyle={{bottom: -10, left: 25}} />
                 <Area type="monotone" dataKey="aqi" stroke="#006991" strokeWidth={2} fill="url(#colorUv)" />
             </AreaChart>
             </ResponsiveContainer>
