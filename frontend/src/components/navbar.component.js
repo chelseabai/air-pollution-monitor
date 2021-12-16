@@ -24,9 +24,6 @@ export default class Navbar extends Component{
                         <li className="nav-item">
                             <Link to="/data" className="nav-link">Live Compass</Link>
                         </li>
-                        <li className="nav-item">
-                            <Link to="/data" className="nav-link">Documentation</Link>
-                        </li>
                     </ul>
                 </div>
 
