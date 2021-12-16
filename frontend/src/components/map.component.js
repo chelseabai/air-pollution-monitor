@@ -226,6 +226,5 @@ export default function Map() {
                 <PollutionPieChart url={myurl}/>
             </div>
         </div>
-
     );
 }

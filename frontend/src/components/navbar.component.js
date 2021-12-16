@@ -20,7 +20,7 @@ export default class Navbar extends Component{
                             <Link to="/" className="nav-link">Pollution Data</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/data" className="nav-link">Live Compass</Link>
+                            <Link to="/livedata" className="nav-link">Live Compass</Link>
                         </li>
                     </ul>
                 </div>
