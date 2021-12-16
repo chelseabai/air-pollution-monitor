@@ -219,7 +219,7 @@ export default function Map() {
                     <div style={{fontSize: "15px", color: "#bcbec0"}}>Data provided by: London Air Quality Network</div>
                 </div>
             </div>
-            <div className="d-flex flex-row overflow-scroll" style={{ width:'100vw', minWidth: '950px'}}>
+            <div className="d-flex flex-row overflow-scroll p-3" style={{ width:'100vw', minWidth: '950px'}}>
                 <PollutionLineChart url={myurl}/>
                 <PollutionBarChart url={myurl}/>
             </div>

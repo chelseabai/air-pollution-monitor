@@ -111,7 +111,11 @@ export default function PollutionBarChart({url}) {
                 <YAxis />
                 <Tooltip content ={<CustomTooltip />}/>
                 <Legend wrapperStyle={{bottom: -10, left: 25}}/>
-                <Bar dataKey="aqi" fill="#8884d8" />
+                <Bar dataKey="aqi">
+                    {data.map((entry, index) => (
+                        <Cell fill={entry.aqi <= 50 ? '#9dcd5f' : entry.aqi <= 100 ? '#f7d75b' : entry.aqi <= 150 ? '#f7a75c' : entry.aqi <= 200 ? '#f1605e' : '#8e68ad'} />
+                    ))}
+                </Bar>
             </BarChart>
         </ResponsiveContainer>
         </div>
