@@ -4,6 +4,7 @@ import mapboxgl from '!mapbox-gl';
 import axios from "axios";
 import PollutionLineChart from "./linechart.component";
 import PollutionBarChart from "./barchart.component";
+import PollutionPieChart from "./piechart.component";
 
 /* eslint import/no-webpack-loader-syntax: off */
 
@@ -222,6 +223,7 @@ export default function Map() {
             <div className="d-flex flex-row overflow-scroll p-3" style={{ width:'100vw', minWidth: '950px'}}>
                 <PollutionLineChart url={myurl}/>
                 <PollutionBarChart url={myurl}/>
+                <PollutionPieChart url={myurl}/>
             </div>
         </div>
 
