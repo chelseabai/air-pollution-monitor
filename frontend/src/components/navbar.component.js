@@ -6,7 +6,7 @@ import logo from "../logo.svg"
 export default class Navbar extends Component{
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark px-5 py-4" style= {{ backgroundColor: '#64b5f6', color: 'white', minWidth: '950px'}}>
+            <nav className="navbar navbar-expand-lg navbar-dark px-5 py-4 sticky-top" style= {{ backgroundColor: '#64b5f6', color: 'white', minWidth: '950px'}}>
                 <a className="navbar-brand" href="/"> <img src={logo} width="70" height="70" className="d-inline-block mx-3" />Pollution Compass </a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
