@@ -37,7 +37,6 @@ export default function PollutionBarChart({url}) {
                 </div>
             );
         }
-
         return null;
     };
 

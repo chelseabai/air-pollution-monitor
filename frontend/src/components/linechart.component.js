@@ -1,15 +1,5 @@
 import React, { PureComponent } from 'react';
-import { LineChart,
-    Line,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    Legend,
-    Brush,
-    AreaChart,
-    Area,
-    ResponsiveContainer, } from 'recharts';
+import { XAxis, YAxis, CartesianGrid, Tooltip, Legend, AreaChart, Area, ResponsiveContainer, } from 'recharts';
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -52,7 +42,6 @@ export default function PollutionLineChart({url}) {
     };
 
     return (
-
         <div className="p-3" style={{minWidth:'600px', minHeight: '400px', width: '30vw', height: '20vw', boxShadow: "3px 3px 10px 1px #ededfc", borderRadius: "15px"}}>
             <h4>
                 Historical PM2.5 Pollution Line Chart

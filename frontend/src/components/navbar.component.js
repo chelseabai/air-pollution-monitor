@@ -3,8 +3,6 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import { Link } from "react-router-dom";
 import logo from "../logo.svg"
 
-// #9ccc65 green; #e57373 red; #64b5f6 blue; #ffd54f yellow
-
 export default class Navbar extends Component{
     render() {
         return (
@@ -26,8 +24,6 @@ export default class Navbar extends Component{
                         </li>
                     </ul>
                 </div>
-
-
             </nav>
         )
     };

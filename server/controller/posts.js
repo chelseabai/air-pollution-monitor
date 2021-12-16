@@ -1,5 +1,3 @@
-// 1d41d3a3fb9d1ac5939a9fe0c06645c704390c98
-
 import aqi from "aqi-us";
 import fetch from "node-fetch";
 import schedule from "node-schedule";

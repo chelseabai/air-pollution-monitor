@@ -15,6 +15,4 @@ router.get('/api/Farringdon', getFarringdonData);
 router.get('/api/Westminster', getWestminsterData);
 router.get('/api/mylocation', getMyData);
 
-// router.get('/api', displayPollutionData);
-
 export default router;
