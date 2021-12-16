@@ -2,11 +2,11 @@
 #include <PubSubClient.h>
 
 // Set WiFi credentials
-//#define WIFI_SSID "BT-XGCK2S"
-//#define WIFI_PASS "aLv9DCRraU4NET"
+#define WIFI_SSID "BT-XGCK2S"
+#define WIFI_PASS "aLv9DCRraU4NET"
 
-#define WIFI_SSID "BT-Mini-Hub-2899-2.4GHz"
-#define WIFI_PASS "deAdVpNgKu3n"
+//#define WIFI_SSID "BT-Mini-Hub-2899-2.4GHz"
+//#define WIFI_PASS "deAdVpNgKu3n"
 
 // Set mqtt broker settings
 //const char *mqttServer = "192.168.1.81";

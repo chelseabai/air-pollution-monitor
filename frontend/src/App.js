@@ -1,5 +1,4 @@
 import React from 'react';
-import "bootstrap/dist/css/bootstrap-reboot.min.css"
 import 'mapbox-gl/dist/mapbox-gl.css';
 import {HashRouter as Router, Route, Routes} from "react-router-dom";
 import Navbar from "./components/navbar.component";
