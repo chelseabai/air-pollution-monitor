@@ -6,3 +6,5 @@ Pollution Compass is an IoT ecosystem that actively monitors city-wide pollution
 > Data is collected when the device is connected to a power supply using a MQTT message broker.
 
 Fully working webapp at: [Pollution Compass](https://pollutioncompass.herokuapp.com)
+
+![alt text](pics/webapp.png)
