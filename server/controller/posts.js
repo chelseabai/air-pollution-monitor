@@ -2,6 +2,7 @@ import aqi from "aqi-us";
 import fetch from "node-fetch";
 import schedule from "node-schedule";
 import mongoose from 'mongoose';
+import {config} from "../../config.js";
 
 const postSchema = mongoose.Schema({
     location: String,
@@ -27,15 +28,25 @@ const saveData = async (location, aqi, time) => {
 };
 
 // Stations to gather data from
-const Marylebone = `https://api.waqi.info/feed/united-kingdom/london-marylebone-road/?token=1d41d3a3fb9d1ac5939a9fe0c06645c704390c98`;
-const Camden = `https://api.waqi.info/feed/united-kingdom/camden-euston-road/?token=1d41d3a3fb9d1ac5939a9fe0c06645c704390c98`;
-const NKensington = `https://api.waqi.info/feed/united-kingdom/london-n.-kensington/?token=1d41d3a3fb9d1ac5939a9fe0c06645c704390c98`;
-const Hounslow = `https://api.waqi.info/feed/united-kingdom/hounslow-chiswick/?token=1d41d3a3fb9d1ac5939a9fe0c06645c704390c98`;
-const Sirjohncass = `https://api.waqi.info/feed/united-kingdom/city-of-london-sir-john-cass-school/?token=1d41d3a3fb9d1ac5939a9fe0c06645c704390c98`;
-const Hackney = `https://api.waqi.info/feed/united-kingdom/hackney-old-street/?token=1d41d3a3fb9d1ac5939a9fe0c06645c704390c98`;
-const Farringdon = `https://api.waqi.info/feed/united-kingdom/city-of-london-farringdon-street/?token=1d41d3a3fb9d1ac5939a9fe0c06645c704390c98`;
-const Westminster = `https://api.waqi.info/feed/united-kingdom/london-westminster/?token=1d41d3a3fb9d1ac5939a9fe0c06645c704390c98`;
+const AIRQUALITY_TOKEN = config.AIRQUALITY_TOKEN;
+
+
+const Marylebone = `https://api.waqi.info/feed/united-kingdom/london-marylebone-road/?token=` + AIRQUALITY_TOKEN;
+const Camden = `https://api.waqi.info/feed/united-kingdom/camden-euston-road/?token=` + AIRQUALITY_TOKEN;
+const NKensington = `https://api.waqi.info/feed/united-kingdom/london-n.-kensington/?token=` + AIRQUALITY_TOKEN;
+const Hounslow = `https://api.waqi.info/feed/united-kingdom/hounslow-chiswick/?token=` + AIRQUALITY_TOKEN;
+const Sirjohncass = `https://api.waqi.info/feed/united-kingdom/city-of-london-sir-john-cass-school/?token=` + AIRQUALITY_TOKEN;
+const Hackney = `https://api.waqi.info/feed/united-kingdom/hackney-old-street/?token=` + AIRQUALITY_TOKEN;
+const Farringdon = `https://api.waqi.info/feed/united-kingdom/city-of-london-farringdon-street/?token=` + AIRQUALITY_TOKEN;
+const Westminster = `https://api.waqi.info/feed/united-kingdom/london-westminster/?token=` + AIRQUALITY_TOKEN;
 const locations = [Marylebone, Camden, NKensington, Hounslow, Sirjohncass, Hackney, Farringdon, Westminster];
+
+export const postPollutionData = () => {
+    schedule.scheduleJob('55 * * * *', function(){
+        console.log("Job is running!");
+        fetchPollutionData();
+    });
+};
 
 const fetchPollutionData = async() => {
     let time_ob = new Date();
@@ -55,13 +66,6 @@ const fetchPollutionData = async() => {
             console.log('There is an error with the API!');
         }
     }
-};
-
-export const postPollutionData = () => {
-    schedule.scheduleJob('55 * * * *', function(){
-        console.log("Job is running!");
-        fetchPollutionData();
-    });
 };
 
 export const postMQTTdata = async(topic, concentration) => {

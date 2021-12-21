@@ -6,6 +6,7 @@ import cors from 'cors';
 import routes from './server/routes/routes.js'
 import {postPollutionData, postMQTTdata} from "./server/controller/posts.js";
 import path from 'path';
+import {config} from './config.js'
 
 const app = express();
 
@@ -52,7 +53,7 @@ client.on('connect', () => {
 });
 
 // Post pollution data from online API to the database
-const CONNECTION_URL = `mongodb+srv://chelseabai:happytina123@pollution-data.vssyr.mongodb.net/databaseA?retryWrites=true&w=majority`;
+const CONNECTION_URL = `mongodb+srv://`+ config.MONGODB_KEY + `@pollution-data.vssyr.mongodb.net/databaseA?retryWrites=true&w=majority`;
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true})
